@@ -1,6 +1,6 @@
 package cli.xo.model;
 
-import cli.xo.model.exceptions.AllreadyOccupiedException;
+import cli.xo.model.exceptions.AlreadyOccupiedException;
 import cli.xo.model.exceptions.InvalidPointException;
 
 public class Board {
@@ -21,11 +21,11 @@ public class Board {
         return field[point.getX()][point.getY()];
     }
 
-    public void setFigure(final Point point, final Figure figure) throws InvalidPointException, AllreadyOccupiedException {
+    public void setFigure(final Point point, final Figure figure) throws InvalidPointException, AlreadyOccupiedException {
         if (!checkPoint(point))
             throw new InvalidPointException();
         if (field[point.getX()][point.getY()] != null)
-            throw new AllreadyOccupiedException();
+            throw new AlreadyOccupiedException();
         field[point.getX()][point.getY()] = figure;
     }
 
