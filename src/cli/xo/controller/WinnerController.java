@@ -39,24 +39,29 @@ public class WinnerController {
             e.printStackTrace();
         }
 
-
         return null;
     }
 
-    private boolean check(final Board board, final Point startPoint, final IPointChanger pointChanger) {
-        final Point p2 = pointChanger.next(startPoint);
-        final Point p3 = pointChanger.next(p2);
+    private boolean check(final Board board,
+                          final Point startPoint,
+                          final IPointChanger pointChanger) {
+
+        final Figure currentFigure;
+        final Figure nextFigure;
+        final Point nextPoint = pointChanger.next(startPoint);
 
         try {
-            if (board.getFigure(startPoint) == null)
-                return false;
-            if (board.getFigure(startPoint) == board.getFigure(p2) &&
-                board.getFigure(startPoint) == board.getFigure(p3))
-                return true;
-        } catch (InvalidPointException e) {
-            e.printStackTrace();
+            currentFigure = board.getFigure(startPoint);
+            nextFigure = board.getFigure(nextPoint);
+        } catch (final InvalidPointException e) {
+            return true;
         }
-        return false;
+
+        if (currentFigure == null)
+            return false;
+        if (currentFigure != nextFigure)
+            return false;
+        return check(board, nextPoint, pointChanger);
     }
 
     private interface IPointChanger {
