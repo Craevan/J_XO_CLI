@@ -28,20 +28,6 @@ public class BoardTest {
     }
 
     @Test
-    public void testSetFigureWhenAlreadyOccupied() throws Exception {
-        final Board board = new Board();
-        final Point inputPoint = new Point(0,0);
-        final Figure figure = Figure.O;
-        board.setFigure(inputPoint, figure);
-
-        try {
-            board.setFigure(inputPoint, figure);
-            fail();
-        } catch (final AlreadyOccupiedException aoe) {
-        }
-    }
-
-    @Test
     public void testGetFigureWhenFigureIsNotSet() throws Exception {
         final Board board = new Board();
         final Point inputPoint = new Point(0,0);
